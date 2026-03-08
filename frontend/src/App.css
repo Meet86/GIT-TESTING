@@ -17,16 +17,18 @@
   --color-warning: #d99e0b;
   --color-blue: #0969da;
   --color-blue-hover: #0958d9;
-  
+
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
-  
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-  
+
+  --font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
   /* Viewport-based square size */
   --square-size: 0.9vw;
   --square-gap: 0.2vw;
@@ -80,7 +82,7 @@ body {
   margin: 0 auto;
   padding: 0 var(--spacing-xl);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: var(--spacing-lg);
@@ -103,6 +105,7 @@ h1 {
   gap: var(--spacing-lg);
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .control-group {
@@ -115,6 +118,22 @@ h1 {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--color-text-secondary);
+}
+
+.repo-meta {
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.repo-pill {
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 select {
@@ -183,6 +202,23 @@ select:focus {
   line-height: 1.5;
 }
 
+.random-fill-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-lg);
+}
+
+.random-fill-label {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 /* Graph Container */
 .graph-container {
   margin-bottom: var(--spacing-xl);
@@ -207,6 +243,7 @@ select:focus {
 }
 
 .legend-color {
+  appearance: none;
   width: 0.8vw;
   height: 0.8vw;
   border-radius: 2px;
@@ -228,7 +265,64 @@ select:focus {
 
 .legend-color.active {
   border-color: var(--color-blue);
-  box-shadow: 0 0 0 2px var(--color-bg-primary), 0 0 0 4px var(--color-blue);
+  box-shadow:
+    0 0 0 2px var(--color-bg-primary),
+    0 0 0 4px var(--color-blue);
+}
+
+.heatmap-shell {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+
+.heatmap-shell svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.react-calendar-heatmap text {
+  fill: var(--color-text-secondary);
+  font-size: 10px;
+}
+
+.react-calendar-heatmap rect {
+}
+
+.react-calendar-heatmap .day-cell {
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    stroke 0.12s ease;
+}
+
+.react-calendar-heatmap .day-cell:hover {
+  stroke: #0969da;
+  stroke-width: 1;
+}
+
+.react-calendar-heatmap .color-empty {
+  fill: #ebedf0;
+}
+
+.react-calendar-heatmap .color-github-1 {
+  fill: #c7f0cf;
+}
+
+.react-calendar-heatmap .color-github-2 {
+  fill: #82d89c;
+}
+
+.react-calendar-heatmap .color-github-3 {
+  fill: #49b96a;
+}
+
+.react-calendar-heatmap .color-github-4 {
+  fill: #2d8f4c;
+}
+
+.react-calendar-heatmap .color-github-5 {
+  fill: #1e682f;
 }
 
 /* Calendar */
@@ -236,7 +330,8 @@ select:focus {
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-md);
-  min-width: fit-content;
+  min-width: -webkit-fill-available;
+  min-width: max-content;
 }
 
 .weekday-labels {
@@ -331,7 +426,7 @@ select:focus {
 }
 
 .square.selected {
-  box-shadow: 0 0 0 2px var(--color-blue);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
 }
 
 /* Action Buttons */
@@ -389,6 +484,19 @@ select:focus {
 .btn-secondary:hover {
   background: var(--color-bg-secondary);
   border-color: var(--color-border-hover);
+}
+
+.btn-random {
+  min-width: auto;
+  padding: 0.45rem 0.8rem;
+  background: #e7f5ea;
+  border-color: #b7dcc0;
+  color: #215732;
+}
+
+.btn-random:hover {
+  background: #d7efdd;
+  border-color: #9dceb0;
 }
 
 /* Status */
@@ -457,6 +565,12 @@ select:focus {
   color: var(--color-text-secondary);
 }
 
+.hover-base {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  margin-top: var(--spacing-xs);
+}
+
 /* Footer */
 .footer {
   background: var(--color-bg-primary);
@@ -483,34 +597,43 @@ select:focus {
 @media (max-width: 768px) {
   .header-content {
     padding: 0 var(--spacing-md);
+    justify-content: center;
   }
-  
+
   .header-controls {
     width: 100%;
     justify-content: center;
   }
-  
+
+  .repo-meta {
+    justify-content: center;
+  }
+
   .main-content {
     padding: var(--spacing-lg) var(--spacing-md);
   }
-  
+
   .contribution-graph {
     padding: var(--spacing-lg);
   }
-  
+
   .graph-container {
     padding: var(--spacing-sm);
   }
-  
+
   .legend {
     font-size: 0.75rem;
   }
-  
+
+  .random-fill-panel {
+    align-items: stretch;
+  }
+
   .action-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .btn {
     width: 100%;
     max-width: 250px;
